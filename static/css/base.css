@@ -1,0 +1,114 @@
+/* Barra lateral */
+.menu {
+    width: 250px;
+    background-color: #f4f4f4;
+    position: fixed;
+    top: 60px; /* Ajuste o topo para não sobrepor a barra superior */
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Certifica-se de que o menu fique acima de outros elementos */
+}
+
+/* Barra superior */
+.top-bar {
+    width: 100%;
+    background-color: #0056b3; /* Cor azul */
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100; /* Certifica-se de que a barra azul fique acima de todos os elementos */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Perfil do usuário */
+.user-profile {
+    font-size: 16px;
+}
+
+/* Ajusta o tamanho e o alinhamento da imagem da logo */
+.logo img {
+    width: 150px; /* Define a largura da imagem como 150px */
+    height: auto; /* Mantém a proporção da altura automática */
+    display: block;
+    margin-left: 0; /* Remove qualquer margem para alinhar com a barra */
+}
+
+/* Adiciona margem para centralizar a imagem na barra */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinha a imagem à esquerda */
+    padding-left: 20px; /* Adiciona espaçamento à esquerda */
+}
+
+/* Conteúdo principal */
+.content {
+    margin-left: 270px; /* Espaço deixado pela barra lateral */
+    padding: 20px;
+    margin-top: 70px; /* Espaço deixado pela barra superior */
+}
+
+/* Estilo do menu */
+.nav {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.submenu {
+    display: none;
+}
+
+.submenu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    margin-left: 10px;
+}
+
+.open .arrow {
+    transform: rotate(-135deg);
+}
+
+.submenu.active {
+    display: block;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

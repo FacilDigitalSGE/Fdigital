@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+<!-- Carrega o CSS específico para a página de login -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div>
+            <label for="username">Usuário:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div>
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+{% endblock %}
