@@ -1,4 +1,3 @@
-@import url('{% static "css/base.css" %}');
 /* Estilos para a página de Classificação de Solicitações */
 .page-header {
   background: linear-gradient(135deg, #1d4ed8, #2563eb);

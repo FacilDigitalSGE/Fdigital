@@ -3,31 +3,29 @@
 
 {% block title %}Classificação de Solicitações{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{% static 'css/classificacao_solicitacoes.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="main-container">
-    <!-- Cabeçalho -->
     <div class="page-header">
         <h1 class="page-title">Classificação de Solicitações</h1>
     </div>
 
     <div class="filter-section">
-        <label for="classificar-em-lote"><strong>Classificar em Lote:</strong></label>
+        <label for="classificar-em-lote">Classificar em Lote:</label>
         <select id="classificar-em-lote" class="form-control">
             <option value="">-- Selecione --</option>
-            <option value="Licenciamento">Licenciamento</option>
-            <option value="DRM">DRM</option>
-            <option value="VRE/Licenciamento">VRE/Licenciamento</option>
-            <option value="ITBI, ISSQN e Outros">ITBI, ISSQN e Outros</option>
+            <option value="drm">Licenciamento DRM VRE</option>
+            <option value="outros">Licenciamento ITBI, ISSQN e Outros</option>
         </select>
-        <!-- Botão Aplicar -->
         <button id="apply-classification" class="btn-primary">Salvar</button>
-        <!-- Botão Salvar -->
-        
     </div>
 
-    <!-- Tabela Interativa -->
     <div class="document-list">
-        <table id="classificacao-tabela" class="display interactive-table" style="width:100%">
+        <table id="classificacao-tabela" class="display">
             <thead>
                 <tr>
                     <th><input type="checkbox" id="select-all"></th>
@@ -38,21 +36,13 @@
                     <th>Assunto</th>
                     <th>Ult. Analista</th>
                     <th>Classificação</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-		<link rel="stylesheet" href="classificacao_solicitacoes.css">
-		<script src="classificacao_solicitacoes.js"></script>
-
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-
-                <!-- Exemplo de linha -->
-                <tr class="document-item">
+                <tr>
                     <td><input type="checkbox" class="select-row"></td>
-                    <td class="text-center"><button class="btn-icon" title="Visualizar"><i data-lucide="eye"></i></button></td>
+                    <td><i data-lucide="eye"></i></td>
                     <td>2024001</td>
                     <td>23/10/2024</td>
                     <td>Maria Santos</td>
@@ -60,12 +50,12 @@
                     <td>João Silva</td>
                     <td>
                         <select class="classification-dropdown">
-                            <option value="Licenciamento">Licenciamento</option>
-                            <option value="DRM">DRM</option>
-                            <option value="VRE/Licenciamento">VRE/Licenciamento</option>
-                            <option value="ITBI, ISSQN e Outros">ITBI, ISSQN e Outros</option>
+                            <option value="drm">Licenciamento DRM VRE</option>
+                            <option value="outros">Licenciamento ITBI, ISSQN e Outros</option>
                         </select>
-                        <button class="btn-primary">Salvar</button>
+                    </td>
+                    <td>
+                        <button class="btn-save-classificacao btn-primary">Salvar</button>
                     </td>
                 </tr>
             </tbody>
@@ -75,42 +65,27 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 <script src="{% static 'js/classificacao_solicitacoes.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+{% endblock %}
+<!-- No final do body, antes do fechamento -->
+<!-- Scripts fundamentais -->
+<script src="{% static 'js/base.js' %}"></script>
 
+<!-- Scripts para DataTables e funcionalidades extras -->
+
+<!-- Função toggle do menu -->
 <script>
-    $(document).ready(function() {
-        // Inicializar DataTables
-        $('#classificacao-tabela').DataTable();
-
-        // Selecionar todos os checkboxes
-        $('#select-all').on('click', function() {
-            var rows = $('#classificacao-tabela').DataTable().rows({ 'search': 'applied' }).nodes();
-            $('input[type="checkbox"]', rows).prop('checked', this.checked);
-        });
-
-        // Aplicar classificação em lote
-        $('#apply-classification').on('click', function() {
-            var selectedValue = $('#classificar-em-lote').val();
-            if (selectedValue) {
-                // Atualizar todas as classificações selecionadas
-                $('.document-item input.select-row:checked').each(function() {
-                    $(this).closest('tr').find('.classification-dropdown').val(selectedValue);
-                });
+    function toggleMenu(menuId) {
+        const submenu = document.getElementById(menuId);
+        if (submenu) {
+            submenu.classList.toggle('active');
+            const parentLink = submenu.previousElementSibling;
+            if (parentLink) {
+                parentLink.classList.toggle('open');
             }
-        });
-
-        // Evento para o botão salvar (exemplo de ação)
-        $('.btn-save-classificacao').on('click', function() {
-            alert('Classificações salvas!');
-        });
-    });
+        }
+    }
 </script>
-{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="{% static 'css/classificacao_solicitacoes.css' %}">
-{% endblock %}
+</body>
+</html>

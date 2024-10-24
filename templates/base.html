@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Meu Sistema{% endblock %}</title>
     
-    <!-- Carrega o CSS principal -->
+    <!-- Bibliotecas CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+    
+    <!-- CSS principal -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     
     {% block extra_css %}{% endblock %}
@@ -69,7 +72,7 @@
                         </li>   
                     {% endif %}
 
-                    <!-- Novo menu Pesquisa (exceto para CIDADÃO e Departamental apenas simplificada) -->
+                    <!-- Menu Pesquisa (exceto para CIDADÃO e Departamental apenas simplificada) -->
                     {% if user.perfil.perfil != 'CIDADÃO' %}
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuPesquisa')">Pesquisa <b class="arrow"></b></a>
@@ -82,22 +85,22 @@
                         </li>
                     {% endif %}
 
-                                                            <!-- Novo menu Relatórios (exceto para Atendente, CIDADÃO e Departamental) -->
+                    <!-- Menu Relatórios (exceto para Atendente, CIDADÃO e Departamental) -->
                     {% if user.perfil.perfil != 'ATENDENTE' and user.perfil.perfil != 'CIDADÃO' and user.perfil.perfil != 'DEPARTAMENTAL' %}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuRelatorios')">Relatórios <b class="arrow"></b></a>
-                        <ul class="submenu" id="menuRelatorios">
-                            {% if user.perfil.perfil == 'GERENTE' %}
-                                <li><a href="#">Relatório Unidade</a></li>
-                            {% elif user.perfil.perfil == 'ADMINISTRADOR' %}
-                                <li><a href="#">Gerencial</a></li>
-                                <li><a href="#">Desempenho</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuRelatorios')">Relatórios <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuRelatorios">
+                                {% if user.perfil.perfil == 'GERENTE' %}
+                                    <li><a href="#">Relatório Unidade</a></li>
+                                {% elif user.perfil.perfil == 'ADMINISTRADOR' %}
+                                    <li><a href="#">Gerencial</a></li>
+                                    <li><a href="#">Desempenho</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
                     {% endif %}
 
-                    <!-- Novo menu Distribuição de Solicitações (para Administrador e Gerente) -->
+                    <!-- Menu Distribuição de Solicitações (para Administrador e Gerente) -->
                     {% if user.perfil.perfil == 'ADMINISTRADOR' or user.perfil.perfil == 'GERENTE' %}
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuDistribuicao')">Distribuição de Solicitações <b class="arrow"></b></a>
@@ -158,7 +161,21 @@
         Fácil Digital - Todos os direitos reservados.
     </footer>
 
-    <!-- Carrega o arquivo de JavaScript -->
+    <!-- Bibliotecas JavaScript fundamentais -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- JavaScript principal -->
     <script src="{% static 'js/base.js' %}"></script>
-</body>
+    
+    <!-- JavaScript adicional -->
+    {% block extra_js %}{% endblock %}
+
+    <!-- Inicialização dos ícones Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    </body>
 </html>
