@@ -21,4 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/', include('usuarios.urls')),
+    path('solicitacoes/', include('solicitacoes.urls')),  # inclui as rotas do app solicitacoes
+    
 ]
