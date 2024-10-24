@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Solicitações em Análise{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Cabeçalho -->
+    <div class="page-header">
+        <h1 class="page-title">Solicitações em Análise</h1>
+    </div>
+
+    <!-- Filtros e Retorno em Lote -->
+    <div class="filter-section">
+        <label for="retornar-em-lote"><strong>Retornar em lote as solicitações selecionadas:</strong></label>
+        <button class="btn-retornar">Retornar</button>
+
+    </div>
+
+    <!-- Tabela Interativa -->
+    <div class="document-list">
+        <table id="solicitacoes-tabela" class="display interactive-table" style="width:100%">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th>Visualizar</th>
+                    <th>Protocolo</th>
+                    <th>Atendente</th>
+                    <th>Assunto</th>
+                    <th>Data de Atribuição</th>
+                    <th>Requerente</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Data Inclusão</th>
+                    <th>Data Devolução</th>
+                    <th>Data Entrada</th>
+                    <th>Classificação</th>
+                    <th>Retornar ao Gestor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="document-item">
+                    <td><input type="checkbox" class="select-row"></td>
+                    <td class="text-center">
+                        <button class="btn-icon" title="Visualizar">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </td>
+                    <td>2024001</td>
+                    <td>Maria Santos</td>
+                    <td>Análise de Documentação</td>
+                    <td>22/10/2024</td>
+                    <td>João Silva</td>
+                    <td>123.456.789-00</td>
+                    <td>20/10/2024</td>
+                    <td>25/10/2024</td>
+                    <td>19/10/2024</td>
+                    <td>Urgente</td>
+                    <td>
+                        <button id="btn-retornar-lote" class="btn-retornar">Retornar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Scripts adicionais para DataTables e Lucide Icons -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{% static 'js/solicitacoes_analise.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{% static 'css/solicitacoes_analise.css' %}">
+{% endblock %}

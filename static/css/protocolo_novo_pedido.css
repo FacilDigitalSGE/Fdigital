@@ -1,0 +1,65 @@
+/* Ajuste da logo e cabeçalho */
+.logo img {
+    height: 30px; /* Mantendo o tamanho do logo */
+    width: auto;
+    display: block;
+    margin-right: 10px;
+}
+
+.header-logo-text {
+    display: flex;
+    align-items: center; /* Alinha a logo e o texto verticalmente ao centro */
+    justify-content: center; /* Centraliza o conteúdo flex */
+    position: relative;
+}
+
+.logo {
+    margin-right: 10px; /* Espaçamento entre a logo e o texto */
+}
+
+.header-text {
+    text-align: center; /* Centraliza o texto */
+}
+
+header h1, header h2, header h3 {
+    margin: 0;
+}
+
+/* Outras definições já existentes no CSS */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 600px;
+    border: 1px solid #ccc;
+}
+
+.details {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}

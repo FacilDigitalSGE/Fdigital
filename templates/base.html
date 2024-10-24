@@ -34,15 +34,10 @@
                 <ul class="nav">
                     {% if user.perfil.perfil == 'ADMINISTRADOR' %}
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menu1')">Gerenciamento de Usuários <b class="arrow"></b></a>
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menu1')">Gerenciamento de Usuários/Unidades <b class="arrow"></b></a>
                             <ul class="submenu" id="menu1">
-                                <li><a href="#">Gerenciar Permissões</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menu2')">Gerenciamento de Unidades <b class="arrow"></b></a>
-                            <ul class="submenu" id="menu2">
-                                <li><a href="#">Criar / Editar Unidades</a></li>
+                                <li><a href="#">Usuários</a></li>
+                                <li><a href="#">Criar e Editar Unidades</a></li>
                             </ul>
                         </li>
                     {% endif %}
@@ -53,24 +48,23 @@
                             <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuSolicitacoes')">Solicitações <b class="arrow"></b></a>
                             <ul class="submenu" id="menuSolicitacoes">
                                 {% if user.perfil.perfil == 'ADMINISTRADOR' %}
-                                    <li><a href="#">Ver Novas Solicitações</a></li>
-                                    <li><a href="#">Visualizar Solicitações em Análise</a></li>
-                                    <li><a href="#">Editar Classificações</a></li>
-                                    <li><a href="#">Pesquisa Avançada</a></li>
-                                    <li><a href="#">Minhas Solicitações</a></li>
+                                    <li><a href="{% url 'criar_solicitacao' %}">Novas Solicitações</a></li>
+                                    <li><a href="{% url 'solicitacoes_analise' %}">Solicitações em Análise</a></li>
+                                    <li><a href="{% url 'classificacao_solicitacoes' %}">Classificar/Editar</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
                                 {% elif user.perfil.perfil == 'GERENTE' %}
-                                    <li><a href="#">Ver Novas Solicitações</a></li>
-                                    <li><a href="#">Visualizar Solicitações em Análise</a></li>
-                                    <li><a href="#">Editar Classificações</a></li>
-                                    <li><a href="#">Pesquisa Avançada</a></li>
-                                    <li><a href="#">Minhas Solicitações</a></li>
+                                    <li><a href="{% url 'criar_solicitacao' %}">Novas Solicitações</a></li>
+                                    <li><a href="{% url 'solicitacoes_analise' %}">Solicitações em Análise</a></li>
+                                    <li><a href="{% url 'classificacao_solicitacoes' %}">Classificar/Editar</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
                                 {% elif user.perfil.perfil == 'ATENDENTE' %}
-                                    <li><a href="#">Visualizar Solicitações em Análise</a></li>
-                                    <li><a href="#">Minhas Solicitações</a></li>
+                                    <li><a href="{% url 'solicitacoes_analise' %}">Solicitações em Análise</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
                                 {% elif user.perfil.perfil == 'CIDADÃO' %}
-                                    <li><a href="#">Minhas Solicitações</a></li>
-                                    <li><a href="#">Nova Solicitação</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
+                                    <li><a href="{% url 'criar_solicitacao' %}">Nova Solicitação</a></li>
                                 {% endif %}
+                                <li><a href="{% url 'analisar_solicitacao' %}">Analisar</a></li>
                             </ul>
                         </li>
                     {% endif %}
@@ -96,14 +90,12 @@
                             {% if user.perfil.perfil == 'GERENTE' %}
                                 <li><a href="#">Relatório Unidade</a></li>
                             {% elif user.perfil.perfil == 'ADMINISTRADOR' %}
-                                <li><a href="#">Relatório Gerencial</a></li>
-                                <li><a href="#">Relatórios de Desempenho</a></li>
+                                <li><a href="#">Gerencial</a></li>
+                                <li><a href="#">Desempenho</a></li>
                             {% endif %}
                         </ul>
                     </li>
                     {% endif %}
-
-
 
                     <!-- Novo menu Distribuição de Solicitações (para Administrador e Gerente) -->
                     {% if user.perfil.perfil == 'ADMINISTRADOR' or user.perfil.perfil == 'GERENTE' %}
@@ -134,7 +126,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuUsuarios')">Usuários <b class="arrow"></b></a>
                             <ul class="submenu" id="menuUsuarios">
-                                <li><a href="#">Editar Dados dos Usuários</a></li>
+                                <li><a href="#">Editar Usuários</a></li>
                             </ul>
                         </li>
                     {% endif %}
@@ -144,7 +136,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuMeusDados')">Meus Dados <b class="arrow"></b></a>
                             <ul class="submenu" id="menuMeusDados">
-                                <li><a href="#">Editar Informações Pessoais</a></li>
+                                <li><a href="#">Editar Informações</a></li>
                             </ul>
                         </li>
                     {% endif %}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Adicione esta linha -->
+
+{% block title %}Análise de Documentos{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/analisar_solicitacao.css' %}">
+
+<div class="main-container">
+  <header class="page-header">
+    <div>
+      <h1 class="header-title">Análise de Documentos</h1>
+      <p>Protocolo: #78550</p>
+    </div>
+  </header>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-label">Solicitante</div>
+      <div class="info-value">SILMAR APARECIDO NEVES MORENO</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">Inscrição Cadastral</div>
+      <div class="info-value">123.45.66.0666.0</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">Cadastro</div>
+      <div class="info-value">4566</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">Data/Hora</div>
+      <div class="info-value">18/10/2024 15:45:36</div>
+    </div>
+  </div>
+
+  <section class="timeline">
+    <h2 class="section-title">Histórico da Solicitação</h2>
+    <div class="timeline-item">
+      <div class="timeline-date">18/10/2024 15:45</div>
+      <div class="timeline-content">
+        <strong>Requerimento Preenchido</strong>
+        <p>Documentação inicial enviada pelo solicitante</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">18/10/2024 15:46</div>
+      <div class="timeline-content">
+        <strong>Documentos Anexados</strong>
+        <p>Contribuinte anexou documentação complementar</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">18/10/2024 15:47</div>
+      <div class="timeline-content">
+        <strong>Análise Iniciada</strong>
+        <p>Analista: Silmarmoreno</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="document-list">
+    <div class="document-item">
+      <div class="document-icon">📄</div>
+      <div class="document-info">
+        <div class="document-name">GUIA_20DE_20SERVI_C7O_2</div>
+        <div class="document-meta">
+          application/p - 18/10/2024 15:46
+        </div>
+      </div>
+      <div class="document-actions">
+        <button class="btn btn-primary">Visualizar</button>
+        <button class="btn btn-success">Download</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="communication-section">
+    <h2 class="section-title">Comunicação</h2>
+    <div class="form-group textarea-group">
+      <label class="form-label label-large">Pendência Identificada</label>
+      <textarea class="form-control" rows="4" placeholder="Descreva a pendência..."></textarea>
+    </div>
+    <div class="form-group textarea-group">
+      <label class="form-label label-large">Ação Concluída</label>
+      <textarea class="form-control" rows="4" placeholder="Mensagem de conclusão..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label label-large">Encaminhar para Análise</label>
+      <textarea class="form-control" rows="4" placeholder="Mensagem de encaminhamento do pedido..."></textarea>
+    </div>
+  </section>
+  
+
+  <div class="action-buttons">
+    <button class="btn btn-primary">
+      <i class="fas fa-reply"></i>
+      Encaminhar para Análise
+    </button>
+    <button class="btn btn-success">
+      <i class="fas fa-check"></i>
+      Solicitação Concluída
+    </button>
+    <button class="btn btn-warning">
+      <i class="fas fa-clock"></i>
+      Solicitação com Pendência
+    </button>
+  </div>
+</div>
+<script src="script.js"></script>
+{% endblock %}

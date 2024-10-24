@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nova Solicitação{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/criar_solicitacao.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+  <!-- Cabeçalho centralizado -->
+  <header class="page-header">
+    <h1 class="page-title">Nova Solicitação</h1>
+  </header>
+
+  <!-- Seção de Pesquisa movida para o topo -->
+  <div class="search-section">
+    <h3 class="search-title">O que você procura?</h3>
+    <p>Antes de encaminhar sua solicitação, veja a relação de documentos necessários para o pedido.</p>
+    
+    <div class="search-box">
+      <input type="text" class="form-control" placeholder="Pesquisar serviço para consultar os documentos necessários...">
+      <button type="button" class="btn-primary">Pesquisar</button>
+    </div>
+    
+    </div>
+
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Informações do Usuário (não editáveis) -->
+    <div class="user-info-section">
+      <div class="user-info-grid">
+        <div class="user-info-item">
+          <span class="user-info-label">Nome</span>
+          <span class="user-info-value" id="userName">João da Silva</span>
+        </div>
+        <div class="user-info-item">
+          <span class="user-info-label">Data</span>
+          <span class="user-info-value" id="currentDate"></span>
+        </div>
+        <div class="user-info-item">
+          <span class="user-info-label">CPF/CNPJ</span>
+          <span class="user-info-value" id="userDocument">123.456.789-00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Solicitação -->
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label">Assunto da Solicitação *</label>
+        <input type="text" class="form-control" required placeholder="Digite o assunto da sua solicitação">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Descrição da Solicitação * (máximo 500 caracteres)</label>
+        <textarea class="form-control" rows="4" required maxlength="500" 
+                  placeholder="Descreva detalhadamente sua solicitação"></textarea>
+        <div class="char-count" id="charCount">0/500</div>
+      </div>
+    </div>
+
+    <!-- Seção de Cadastro -->
+    <div class="form-section">
+      <h3 class="form-section-title">Informações Cadastrais</h3>
+      <div class="registration-row">
+        <input type="text" class="form-control" placeholder="Inscrição Imobiliária">
+        <input type="text" class="form-control" placeholder="Inscrição Mobiliária">
+        <input type="text" class="form-control" placeholder="Cadastro">
+      </div>
+    </div>
+
+    <!-- Seção de Anexos -->
+<div class="form-section">
+  <h3 class="form-section-title">Documentos Anexos</h3>
+  <div class="file-upload">
+    <div class="file-upload-icon">📎</div>
+    <p>Arraste e solte os arquivos aqui ou</p>
+    
+    <!-- Ocultar o input de arquivos padrão -->
+    <input type="file" multiple style="display: none;" id="fileInput">
+    
+    <!-- Botão customizado -->
+    <label for="fileInput" class="btn-secondary">Escolher Arquivos</label>
+  </div>
+</div>
+
+
+    <!-- Botão de Envio -->
+    <div class="text-center">
+    <a href="http://127.0.0.1:8000/solicitacoes/novo-pedido/" class="btn-primary">
+            Enviar Solicitação
+    </a>
+    </div>
+    
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/criar_solicitacao.js' %}"></script>
+{% endblock %}

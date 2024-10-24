@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Classificação de Solicitações{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Cabeçalho -->
+    <div class="page-header">
+        <h1 class="page-title">Classificação de Solicitações</h1>
+    </div>
+
+    <div class="filter-section">
+        <label for="classificar-em-lote"><strong>Classificar em Lote:</strong></label>
+        <select id="classificar-em-lote" class="form-control">
+            <option value="">-- Selecione --</option>
+            <option value="Licenciamento">Licenciamento</option>
+            <option value="DRM">DRM</option>
+            <option value="VRE/Licenciamento">VRE/Licenciamento</option>
+            <option value="ITBI, ISSQN e Outros">ITBI, ISSQN e Outros</option>
+        </select>
+    <!-- Botão Aplicar -->
+    <button id="apply-classification" class="btn-primary">Aplicar</button>
+
+    <!-- Botão Salvar -->
+    <button class="btn-success btn-save-classificacao">Salvar</button>
+</div>
+    
+
+    <!-- Tabela Interativa -->
+    <div class="document-list">
+        <table id="classificacao-tabela" class="display interactive-table" style="width:100%">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th>Visualizar</th>
+                    <th>Protocolo</th>
+                    <th>Data Entrada</th>
+                    <th>Solicitante</th>
+                    <th>Assunto</th>
+                    <th>Ult. Analista</th>
+                    <th>Classificação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Exemplo de linha -->
+                <tr class="document-item">
+                    <td><input type="checkbox" class="select-row"></td>
+                    <td class="text-center"><button class="btn-icon" title="Visualizar"><i data-lucide="eye"></i></button></td>
+                    <td>2024001</td>
+                    <td>23/10/2024</td>
+                    <td>Maria Santos</td>
+                    <td>Pedido de Licenciamento</td>
+                    <td>João Silva</td>
+                    <td>
+                        <select class="classification-dropdown">
+                            <option value="Licenciamento">Licenciamento</option>
+                            <option value="DRM">DRM</option>
+                            <option value="VRE/Licenciamento">VRE/Licenciamento</option>
+                            <option value="ITBI, ISSQN e Outros">ITBI, ISSQN e Outros</option>
+                        </select>
+                        <button class="btn-save-classificacao">Salvar</button> <!-- Botão de salvar -->
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/classificacao_solicitacoes.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{% static 'css/classificacao_solicitacoes.css' %}">
+{% endblock %}
