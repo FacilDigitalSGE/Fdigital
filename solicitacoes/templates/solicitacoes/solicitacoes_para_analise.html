@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Solicitações para Análise{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Cabeçalho -->
+    <div class="page-header">
+        <h1 class="page-title">Solicitações para Análise</h1>
+    </div>
+
+    <!-- Filtro de Busca -->
+    <div class="filter-section">
+        <label for="busca-solicitacao"><strong>Buscar Solicitação:</strong></label>
+        <input type="text" id="busca-solicitacao" class="form-control" placeholder="Digite protocolo ou nome...">
+    </div>
+
+    <!-- Tabela Interativa -->
+    <div class="document-list">
+        <table id="solicitacoes-analise-tabela" class="display interactive-table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Visualizar</th>
+                    <th>Nº Protocolo</th>
+                    <th>Assunto</th>
+                    <th>Data Atribuição</th>
+                    <th>Solicitante</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
+                    <th>Data Entrada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="document-item">
+                    <td class="text-center">
+                        <a href="{% url 'analisar_solicitacao' %}" class="btn btn-primary btn-sm">
+                            <i data-lucide="eye"></i> Visualizar
+                        </a>
+                    </td>
+                    <td>78550</td>
+                    <td>Análise de Documentos</td>
+                    <td>22/10/2024</td>
+                    <td>João Silva</td>
+                    <td>123.456.789-00</td>
+                    <td>(11) 98765-4321</td>
+                    <td>joao@email.com</td>
+                    <td>20/10/2024</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/solicitacoes_analise.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{% static 'css/solicitacoes_analise.css' %}">
+{% endblock %}

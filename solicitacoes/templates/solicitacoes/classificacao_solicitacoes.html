@@ -19,13 +19,11 @@
             <option value="VRE/Licenciamento">VRE/Licenciamento</option>
             <option value="ITBI, ISSQN e Outros">ITBI, ISSQN e Outros</option>
         </select>
-    <!-- Botão Aplicar -->
-    <button id="apply-classification" class="btn-primary">Aplicar</button>
-
-    <!-- Botão Salvar -->
-    <button class="btn-success btn-save-classificacao">Salvar</button>
-</div>
-    
+        <!-- Botão Aplicar -->
+        <button id="apply-classification" class="btn-primary">Salvar</button>
+        <!-- Botão Salvar -->
+        
+    </div>
 
     <!-- Tabela Interativa -->
     <div class="document-list">
@@ -43,6 +41,14 @@
                 </tr>
             </thead>
             <tbody>
+		<link rel="stylesheet" href="classificacao_solicitacoes.css">
+		<script src="classificacao_solicitacoes.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
                 <!-- Exemplo de linha -->
                 <tr class="document-item">
                     <td><input type="checkbox" class="select-row"></td>
@@ -59,9 +65,8 @@
                             <option value="VRE/Licenciamento">VRE/Licenciamento</option>
                             <option value="ITBI, ISSQN e Outros">ITBI, ISSQN e Outros</option>
                         </select>
-                        <button class="btn-save-classificacao">Salvar</button> <!-- Botão de salvar -->
+                        <button class="btn-primary">Salvar</button>
                     </td>
-                    
                 </tr>
             </tbody>
         </table>
@@ -74,6 +79,35 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="{% static 'js/classificacao_solicitacoes.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Inicializar DataTables
+        $('#classificacao-tabela').DataTable();
+
+        // Selecionar todos os checkboxes
+        $('#select-all').on('click', function() {
+            var rows = $('#classificacao-tabela').DataTable().rows({ 'search': 'applied' }).nodes();
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+        });
+
+        // Aplicar classificação em lote
+        $('#apply-classification').on('click', function() {
+            var selectedValue = $('#classificar-em-lote').val();
+            if (selectedValue) {
+                // Atualizar todas as classificações selecionadas
+                $('.document-item input.select-row:checked').each(function() {
+                    $(this).closest('tr').find('.classification-dropdown').val(selectedValue);
+                });
+            }
+        });
+
+        // Evento para o botão salvar (exemplo de ação)
+        $('.btn-save-classificacao').on('click', function() {
+            alert('Classificações salvas!');
+        });
+    });
+</script>
 {% endblock %}
 
 {% block extra_css %}

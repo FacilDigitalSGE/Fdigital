@@ -28,3 +28,7 @@ def classificacao_solicitacoes(request):
 
 def minhas_solicitacoes(request):
     return render(request, 'solicitacoes/minhas_solicitacoes.html')
+
+
+def solicitacoes_para_analise(request):
+    return render(request, 'solicitacoes/solicitacoes_para_analise.html')
