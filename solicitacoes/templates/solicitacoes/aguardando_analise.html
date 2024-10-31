@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}Solicitação - Aguardando Análise{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Título da Página -->
+    <header class="page-header">
+        <h1 class="header-title">Solicitação - Aguardando Análise</h1>
+        <p>Protocolo: #76550</p>
+    </header>
+
+    <!-- Timeline -->
+    <div class="timeline-horizontal">
+        <!-- Aguardando Análise - Primeira bolinha pintada -->
+        <div class="timeline-item">
+            <div class="timeline-icon waiting"></div> <!-- Bolinha pintada de amarelo -->
+            <div class="timeline-content">
+                <h4>Aguardando Análise</h4>
+            </div>
+        </div>
+
+        <!-- Em Análise - Bolinha cinza (não pintada) -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div> <!-- Bolinha não pintada (cinza) -->
+            <div class="timeline-content">
+                <h4>Em Análise</h4>
+            </div>
+        </div>
+
+        <!-- Encaminhada / Concluída - Bolinha cinza (não pintada) -->
+        <div class="timeline-item">
+            <div class="timeline-icon"></div> <!-- Bolinha não pintada (cinza) -->
+            <div class="timeline-content">
+                <h4>Encaminhada / Concluída</h4>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mensagem de Status -->
+    <div class="status-message">
+        <p>Prezado(a) requerente, informamos que sua solicitação foi registrada pela Rede Fácil e será respondida em até <strong>10 dias úteis</strong>.</p>
+    </div>
+
+    <!-- Informações da Solicitação -->
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-label">Solicitante</div>
+            <div class="info-value">SILMAR APARECIDO NEVES MORENO</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Assunto</div>
+            <div class="info-value">Solicitação de Serviços Teste</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Data de Solicitação</div>
+            <div class="info-value">18/10/2024</div>
+        </div>
+    </div>
+
+    <!-- Documentos Anexados -->
+    <section class="document-list">
+        <h2 class="section-title">Documentos Anexados</h2>
+        <div class="document-item">
+            <div class="document-icon"><i class="fas fa-file-pdf"></i></div>
+            <div class="document-info">
+                <div class="document-name">MATRICULA</div>
+                <div class="document-meta">application/pdf - 18/10/2024</div>
+            </div>
+            <div class="document-actions">
+                <button class="btn btn-primary">Visualizar</button>
+                <button class="btn btn-success">Download</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botão de Imprimir -->
+    <div class="action-buttons">
+        <button class="btn btn-warning">Imprimir Solicitação</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/aguardando_analise.css' %}">
+{% endblock %}

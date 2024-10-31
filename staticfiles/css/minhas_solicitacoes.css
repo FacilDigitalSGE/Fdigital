@@ -1,0 +1,141 @@
+@import url('{% static "css/base.css" %}');
+
+/* Estilos para a página de Minhas Solicitações */
+.page-header {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.actions {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-nova-solicitacao {
+  background: #28a745;
+  color: white;
+  padding: 0.40rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-nova-solicitacao:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+
+.filter-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+/* Ajuste das células para manter alinhamento */
+.tabulator {
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 0.875rem;
+}
+
+/* Alinhamento do cabeçalho */
+.tabulator-header {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  height: auto; /* Garante que a altura se ajuste automaticamente */
+}
+
+/* Ajuste das células para manter alinhamento e largura consistentes */
+.tabulator-cell {
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;  /* Centraliza o conteúdo de todas as células */
+  vertical-align: middle;
+}
+
+.tabulator-col {
+  padding: 10px;
+  text-align: center !important;
+}
+
+/* Ajuste específico para a coluna de Visualizar */
+.tabulator-cell[data-field="visualizar"] {
+  text-align: center;
+  width: 80px;
+}
+
+/* Ajustar largura mínima da célula de status */
+.tabulator-cell[data-field="status"] {
+  min-width: 150px;
+  text-align: center;
+}
+
+.tabulator-cell[data-field="inscricao"],
+.tabulator-cell[data-field="data"] {
+  min-width: 120px;
+  text-align: left; /* Alinhamento à esquerda para essas colunas */
+}
+
+/* Ajuste específico para coluna de assunto */
+.tabulator-col[tabulator-field="assunto"],
+.tabulator-cell[tabulator-field="assunto"] {
+    text-align: left;
+}
+
+/* Corrigir padding para alinhar com as células */
+.tabulator-header .tabulator-col-title {
+  padding: 10px;
+}
+
+/* Estilos para os ícones coloridos do status */
+.status-success {
+  color: #28a745;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.status-warning {
+  color: #ff9800;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.status-failed {
+  color: #f44336;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.status-incomplete {
+  color: #ffc107;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+/* Alinhamento dos ícones na célula */
+.status-success i,
+.status-warning i,
+.status-failed i,
+.status-incomplete i {
+  margin-right: 5px;
+}

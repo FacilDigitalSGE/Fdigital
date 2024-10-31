@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Novas Solicitações{% endblock %}
+
+{% block page_title %}Novas Solicitações{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    {% include 'components/ggrid.html' with columns=columns data=table_data %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/novas_solicitacoes.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{% static 'css/novas_solicitacoes.css' %}">
+{% endblock %}

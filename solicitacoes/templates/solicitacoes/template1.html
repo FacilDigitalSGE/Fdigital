@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block page_title %}TESTE TESTANDO{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Lista de Pessoas</h2>
+    {% include 'components/ggrid.html' with columns=columns data=table_data %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/base.js' %}"></script>
+{% endblock %}

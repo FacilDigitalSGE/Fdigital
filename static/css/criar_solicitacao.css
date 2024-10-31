@@ -1,0 +1,247 @@
+
+
+
+.user-info-section {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.user-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.form-group label {
+  margin-bottom: 6px; /* Define uma margem sutil para deixar o rótulo próximo ao campo */
+  display: block; /* Certifica-se de que o rótulo ocupe uma linha completa */
+  font-weight: bold; /* Destaque para o texto do rótulo */
+}
+
+
+.user-info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-label {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.user-info-value {
+  font-weight: 500;
+  color: #334155;
+}
+
+.search-section {
+  background: #f1f5f9;
+  border-left: 4px solid #2563eb;
+  padding: 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 2rem;
+}
+
+.search-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.75rem;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.form-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%; /* Mantém o campo com a largura total do contêiner */
+  padding: 0.75rem; /* Ajuste o padding para que o conteúdo interno fique mais espaçoso */
+  border: 1px solid #e2e8f0; /* Define uma borda leve */
+  border-radius: 6px; /* Suaviza as bordas */
+  box-sizing: border-box; /* Garante que o padding e bordas sejam inclusos no cálculo da largura */
+}
+
+
+.form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+.char-count {
+  font-size: 0.875rem;
+  color: #64748b;
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+.file-upload {
+  border: 2px dashed #e2e8f0;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-upload:hover {
+  border-color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.registration-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.priority-section {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.priority-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2563eb;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.elderly-doc-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.slider {
+  background-color: #94a3b8;  /* Cinza quando desativado */
+  transition: background-color 0.3s ease;
+}
+
+input:checked + .slider {
+  background-color: #22c55e;  /* Verde quando ativado */
+}
+
+.file-list {
+  margin-top: 1rem;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.file-name-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+}
+
+.remove-file {
+  color: #ef4444;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.file-item span:first-child {
+  min-width: 200px;
+}

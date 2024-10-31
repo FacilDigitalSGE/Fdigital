@@ -1,0 +1,60 @@
+@import url('{% static "css/base.css" %}');
+/* Estilos para a página de Solicitações em Análise */
+.page-header {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.interactive-table th, .interactive-table td {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.interactive-table td {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-retornar {
+    background: #dc3545;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-retornar:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}

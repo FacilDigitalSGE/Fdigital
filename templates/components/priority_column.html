@@ -1,0 +1,9 @@
+<div class="priority-icons">
+    {% if priority.elderly %}
+        <i data-lucide="accessibility" class="priority-icon elderly-icon" title="Prioridade Idoso"></i>
+    {% endif %}
+    <i data-lucide="alarm-clock" class="priority-icon urgent-icon disabled" 
+       title="Prioridade Urgente"
+       data-urgent-toggle="true"
+       data-priority-id="{{ priority.id }}"></i>
+</div>

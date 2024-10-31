@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Solicitações em Análise{% endblock %}
+
+{% block page_title %}Solicitações em Análise{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    {% include 'components/ggrid.html' with columns=columns data=table_data %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/solicitacoes_analise.css' %}">
+{% endblock %}

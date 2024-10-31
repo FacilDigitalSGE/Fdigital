@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Sistema{% endblock %}</title>
+    
+    <!-- Bibliotecas CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Top bar -->
+    <div class="top-bar">
+        <div class="user-profile">
+            {% if user.is_authenticated %}
+                {{ user.username }} - {{ user.perfil.perfil }}
+            {% else %}
+                Não autenticado
+            {% endif %}
+        </div>
+        <div class="logo">
+            <img src="{% static 'img/LOGO_BRASAO_CIDADE_GRU_HORIZONTAL_CONTORNO-01.png' %}" alt="Logo" class="logo">
+        </div>
+    </div>
+
+    <!-- Menu lateral -->
+    <div class="menu">
+        <h3>Menu</h3>
+        <nav>
+            {% if user.is_authenticated %}
+                <ul class="nav">
+                    {% if user.perfil.perfil == 'ADMINISTRADOR' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menu1')">Gerenciamento de Usuários/Unidades <b class="arrow"></b></a>
+                            <ul class="submenu" id="menu1">
+                                <li><a href="#">Usuários</a></li>
+                                <li><a href="#">Criar e Editar Unidades</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    
+                    <!-- Menu Solicitações (para todos exceto Departamental) -->
+                    {% if user.perfil.perfil != 'DEPARTAMENTAL' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuSolicitacoes')">Solicitações <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuSolicitacoes">
+                                {% if user.perfil.perfil == 'ADMINISTRADOR' %}
+                                    <li><a href="{% url 'criar_solicitacao' %}">Criar Solicitação</a></li>
+                                    <li><a href="{% url 'novas_solicitacoes' %}">Novas Solicitações</a></li>
+                                    <li><a href="{% url 'solicitacoes_analise' %}">Solicitações em Análise</a></li>
+                                    <li><a href="{% url 'classificacao_solicitacoes' %}">Classificar/Editar</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
+                                {% elif user.perfil.perfil == 'GERENTE' %}
+                                    <li><a href="{% url 'criar_solicitacao' %}">Novas Solicitações</a></li>
+                                    <li><a href="{% url 'solicitacoes_analise' %}">Solicitações em Análise</a></li>
+                                    <li><a href="{% url 'classificacao_solicitacoes' %}">Classificar/Editar</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
+                                {% elif user.perfil.perfil == 'ATENDENTE' %}
+                                    <li><a href="{% url 'solicitacoes_analise' %}">Solicitações em Análise</a></li>
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
+                                {% elif user.perfil.perfil == 'CIDADÃO' %}
+                                    <li><a href="{% url 'minhas_solicitacoes' %}">Minhas Solicitações</a></li>
+                                    <li><a href="{% url 'criar_solicitacao' %}">Nova Solicitação</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'solicitacoes_para_analise' %}">Analisar</a></li>
+                            </ul>
+                        </li>   
+                    {% endif %}                    <!-- Menu Pesquisa (exceto para CIDADÃO e Departamental apenas simplificada) -->
+                    {% if user.perfil.perfil != 'CIDADÃO' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuPesquisa')">Pesquisa <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuPesquisa">
+                                <li><a href="#">Pesquisa Simplificada</a></li>
+                                {% if user.perfil.perfil != 'ATENDENTE' and user.perfil.perfil != 'DEPARTAMENTAL' %}
+                                    <li><a href="#">Pesquisa Avançada</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <!-- Menu Relatórios (exceto para Atendente, CIDADÃO e Departamental) -->
+                    {% if user.perfil.perfil != 'ATENDENTE' and user.perfil.perfil != 'CIDADÃO' and user.perfil.perfil != 'DEPARTAMENTAL' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuRelatorios')">Relatórios <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuRelatorios">
+                                {% if user.perfil.perfil == 'GERENTE' %}
+                                    <li><a href="#">Relatório Unidade</a></li>
+                                {% elif user.perfil.perfil == 'ADMINISTRADOR' %}
+                                    <li><a href="#">Gerencial</a></li>
+                                    <li><a href="#">Desempenho</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <!-- Menu Distribuição de Solicitações (para Administrador e Gerente) -->
+                    {% if user.perfil.perfil == 'ADMINISTRADOR' or user.perfil.perfil == 'GERENTE' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuDistribuicao')">Distribuição de Solicitações <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuDistribuicao">
+                                <li><a href="#">Criar Classificação</a></li>
+                                <li><a href="#">Definir Rota</a></li>
+                                <li><a href="#">Configurar Distribuição Automática</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <!-- Menu Comunicações (exceto para CIDADÃO e Departamental) -->
+                    {% if user.perfil.perfil != 'CIDADÃO' and user.perfil.perfil != 'DEPARTAMENTAL' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menu4')">Comunicações <b class="arrow"></b></a>
+                            <ul class="submenu" id="menu4">
+                                <li><a href="#">Consulta Scripts</a></li>
+                                {% if user.perfil.perfil == 'ADMINISTRADOR' %}
+                                    <li><a href="#">Definir Textos Padrão</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    {% if user.perfil.perfil == 'GERENTE' or user.perfil.perfil == 'ADMINISTRADOR' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuUsuarios')">Usuários <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuUsuarios">
+                                <li><a href="#">Editar Usuários</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    
+                    <!-- Menu "Meus Dados" para o perfil CIDADÃO -->
+                    {% if user.perfil.perfil == 'CIDADÃO' %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" onclick="toggleMenu('menuMeusDados')">Meus Dados <b class="arrow"></b></a>
+                            <ul class="submenu" id="menuMeusDados">
+                                <li><a href="#">Editar Informações</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </div>
+    <!-- Área de conteúdo -->
+    <div class="content">
+        <div class="page-header">
+            <h1 class="page-title">{% block page_title %}{% endblock %}</h1>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- Rodapé -->
+    <footer>
+        Fácil Digital - Todos os direitos reservados.
+    </footer>
+
+    <!-- Bibliotecas JavaScript fundamentais -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- JavaScript principal -->
+    <script src="{% static 'js/base.js' %}"></script>
+    
+    <!-- JavaScript adicional -->
+    {% block extra_js %}{% endblock %}
+
+    <!-- Inicialização dos ícones Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    </body>
+</html>

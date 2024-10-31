@@ -1,0 +1,42 @@
+/* Estilos para a página de Classificação de Solicitações */
+.page-header {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: flex-start;  /* Alinhar itens à esquerda */
+    align-items: center;
+    gap: 10px;  /* Espaçamento entre os itens */
+    margin-bottom: 1.5rem;
+}
+
+.filter-section label {
+    margin-right: 5px;  /* Diminui o espaçamento entre o label e o dropdown */
+    font-weight: bold;  /* Garante que o texto fique em negrito */
+}
+
+.filter-section select, .filter-section button {
+    margin-left: 5px;
+}
+
+.btn-primary {
+    background: #28a745;
+    color: white;
+    padding: 0.40rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: #28a745;
+    transform: translateY(-1px);
+}

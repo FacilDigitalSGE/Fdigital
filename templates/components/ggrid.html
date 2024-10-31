@@ -1,0 +1,43 @@
+<div class="ggrid-container" lang="pt-BR">
+    <div class="ggrid-header">
+        <input type="text" id="search" placeholder="Buscar..." onkeyup="filterTable()" aria-label="Campo de busca" />
+    </div>
+    
+    <table id="ggrid-table" aria-label="Tabela de dados">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                    <th onclick="sortTable({{ forloop.counter0 }})">
+                        {{ column }} <span class="sort-icon">↕</span>
+                    </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                        <td>
+                            {% if cell.template %}
+                                {% include cell.template with priority=cell.context.priority %}
+                            {% else %}
+                                {{ cell|safe }} <!-- Interpreta o HTML como seguro, permitindo links -->
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="ggrid-footer">
+        <div class="ggrid-info">
+            Mostrando <span id="showing-records">0</span> de <span id="total-records">0</span> registros
+        </div>
+        <div class="ggrid-pagination">
+            <button onclick="previousPage()" id="btn-previous">Anterior</button>
+            <span id="page-info">Página <span id="current-page">1</span> de <span id="total-pages">1</span></span>
+            <button onclick="nextPage()" id="btn-next">Próximo</button>
+        </div>
+    </div>
+</div>

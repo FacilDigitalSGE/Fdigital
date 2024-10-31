@@ -1,0 +1,23 @@
+.timeline-icon.canceled {
+    background-color: #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.timeline-icon.pending {
+    background-color: #ffa500;
+}
+
+.status-message.canceled {
+    background-color: #f8d7da;
+    border-left: 5px solid #dc3545;
+    color: #721c24;
+}
+
+.timeline-content p {
+    font-size: 0.8rem;
+    color: #dc3545;
+}

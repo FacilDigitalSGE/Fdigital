@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nova Solicitação{% endblock %}
+
+{% block page_title %}Nova Solicitação{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/criar_solicitacao.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+  <!-- Seção de Pesquisa movida para o topo -->
+  <div class="search-section">
+    <h3 class="search-title">O que você procura?</h3>
+    <p>Antes de encaminhar sua solicitação, veja a relação de documentos necessários para o pedido.</p>
+    
+    <div class="search-box">
+      <input type="text" class="form-control" placeholder="Pesquisar serviço para consultar os documentos necessários...">
+      <button type="button" class="btn-primary">Pesquisar</button>
+    </div>
+  </div>
+
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Informações do Usuário (não editáveis) -->
+    <div class="user-info-section">
+      <div class="user-info-grid">
+        <div class="user-info-item">
+          <span class="user-info-label">Nome</span>
+          <span class="user-info-value" id="userName">João da Silva</span>
+        </div>
+        <div class="user-info-item">
+          <span class="user-info-label">Data</span>
+          <span class="user-info-value" id="currentDate"></span>
+        </div>
+        <div class="user-info-item">
+          <span class="user-info-label">CPF/CNPJ</span>
+          <span class="user-info-value" id="userDocument">123.456.789-00</span>
+        </div>
+      </div>
+    </div>
+<!-- Seção Prioridade Idoso -->
+<div class="priority-toggle">
+  <label class="switch">
+      <input type="checkbox" id="elderlyToggle">
+      <span class="slider round"></span>
+  </label>
+  <span class="priority-label">Solicitar Prioridade - Estatuto do Idoso</span>
+</div>
+
+  
+  <!-- Container para documento (inicialmente oculto) -->
+  <div id="elderlyDocContainer" class="elderly-doc-container" style="display: none;">
+    <div class="file-upload-priority">
+        <p>Anexe um documento de identificação que comprove a idade (RG, CNH ou outro documento oficial)</p>
+        <input type="file" id="elderlyDocInput" accept="image/*,.pdf" style="display: none;">
+        <label for="elderlyDocInput" class="btn-secondary">Anexar Documento do Idoso</label>
+    </div>
+</div>
+
+
+    <!-- Seção de Solicitação -->
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label">Assunto da Solicitação *</label>
+        <input type="text" class="form-control" required placeholder="Digite o assunto da sua solicitação">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Descrição da Solicitação * (máximo 500 caracteres)</label>
+        <textarea class="form-control" rows="4" required maxlength="500" 
+                  placeholder="Descreva detalhadamente sua solicitação"></textarea>
+        <div class="char-count" id="charCount">0/500</div>
+      </div>
+    </div>
+
+    <!-- Seção de Cadastro -->
+    <div class="form-section">
+      <h3 class="form-section-title">Informações Cadastrais</h3>
+      <div class="registration-row">
+        <input type="text" class="form-control" placeholder="Inscrição Imobiliária">
+        <input type="text" class="form-control" placeholder="Inscrição Mobiliária">
+        <input type="text" class="form-control" placeholder="Cadastro">
+      </div>
+    </div>
+
+  <!-- Seção de Anexos -->
+  <div class="form-section">
+      <h3 class="form-section-title">Documentos Anexos</h3>
+      <div class="file-upload">
+          <div class="file-upload-icon">📎</div>
+          <p>Arraste e solte os arquivos aqui ou</p>
+          <input type="file" multiple style="display: none;" id="fileInput">
+          <label for="fileInput" class="btn-secondary">Escolher Arquivos</label>
+      </div>
+        
+      <!-- Lista de arquivos -->
+      <div id="fileList" class="file-list">
+          <!-- Os itens serão adicionados aqui dinamicamente -->
+      </div>
+  </div>
+
+
+    <!-- Botão de Envio -->
+    <div class="text-center">
+    <a href="http://127.0.0.1:8000/solicitacoes/novo-pedido/" class="btn-primary">
+            Enviar Solicitação
+    </a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/criar_solicitacao.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante de Registro de Solicitação no Fácil Digital</title>
+    <!-- Carregar arquivos estáticos -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/protocolo_novo_pedido.css' %}">
+    <style>
+        .justify-text {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header-logo-text">
+            <div class="logo">
+                <img src="{% static 'img/LOGO_BRASAO_CIDADE_GRU_HORIZONTAL_CONTORNO-01.png' %}" alt="Logo" class="logo">
+            </div>
+            <div class="header-text">
+                <h1>CIDADE DE GUARULHOS</h1>
+                <h2>SECRETARIA DE GESTÃO</h2>
+                <h3>Comprovante de Recebimento de Solicitação - Fácil Digital</h3>
+                <h1>Nº 45678/2024</h1>
+            </div>
+        </header>
+        <section class="details">
+            <table>
+                <tr>
+                    <td>Data:</td>
+                    <td>05/08/2024</td>
+                </tr>
+                <tr>
+                    <td>Solicitante:</td>
+                    <td>FUL ANO DE TAL LTDA</td>
+                </tr>
+            </table>
+        </section>
+        <p class="justify-text">Acompanhe o andamento de sua solicitação pelo site fazenda.guarulhos.sp.gov.br (Fácil Digital).</p>
+        <p class="justify-text">Caso sejam identificadas pendências ou se o pedido estiver apto para encaminhamento, você será notificado(a) no e-mail cadastrado.</p>
+        <footer>
+            <p>Departamento de Atendimento ao Cidadão</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Classificação de Solicitações{% endblock %}
+
+{% block page_title %}Classificação de Solicitações{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="filter-section">
+        <label for="classificar-em-lote">Classificar em Lote:</label>
+        <select id="classificar-em-lote" class="form-control">
+            <option value="">-- Selecione --</option>
+            <option value="drm">Licenciamento DRM VRE</option>
+            <option value="outros">Licenciamento ITBI, ISSQN e Outros</option>
+        </select>
+        <button id="apply-classification" class="btn-primary">Salvar</button>
+        
+    </div>
+    {% include 'components/ggrid.html' with columns=columns data=table_data %}
+    
+</div>
+{% endblock %}</html>
+
+{% load static %}
+<script src="{% static 'js/priority.js' %}"></script>
